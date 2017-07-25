@@ -1,8 +1,18 @@
 # mjpg-streamer helpers!
 
-to install the service file
+## to install mjpg-streamer
+#### fast install:
+`curl https://raw.githubusercontent.com/gravcat/mjpg-streamer/master/install.sh | bash`
+#### safe install:
+```
+curl https://raw.githubusercontent.com/gravcat/mjpg-streamer/master/install.sh
+vi install.sh # to inspect the contents
+chmod +x install.sh
+./install.sh
+```
+## to install the service file
 
-## fast install:
+#### fast install:
 ```
 curl https://raw.githubusercontent.com/gravcat/mjpg-streamer/master/webcam_stream | sudo tee /etc/init.d/webcam_stream >/dev/null
 sudo chmod +x /etc/init.d/webcam_stream
@@ -10,7 +20,7 @@ sudo update-rc.d webcam_stream defaults
 sudo service webcam_stream start
 ```
 
-## safe install:
+#### safe install:
 ```
 curl https://raw.githubusercontent.com/gravcat/mjpg-streamer/master/webcam_stream
 vi webcam_stream # to inspect the contents
@@ -20,7 +30,7 @@ sudo update-rc.d webcam_stream defaults
 sudo service webcam_stream start
 ```
 
-#### customizations
+### customizations
 the script assumes the following. if any of these points don't apply to you, you'll need to change variables at the top of the file once you have it locally.
 
 * you're using a webcam that supports `1080p30fps`
