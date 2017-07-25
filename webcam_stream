@@ -1,0 +1,37 @@
+#!/bin/bash
+
+### BEGIN INIT INFO
+# Provides:          webcam_stream
+# Required-Start:    $local_fs networking
+# Required-Stop:
+# Should-Start:
+# Should-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: mjpg_streamer live webcam utility
+# Description:       Starts mjpg_streamer at 1080p30fps available at port 8080
+#
+### END INIT INFO
+
+MJPG_PATH=/home/pi/mjpg-streamer/mjpg-streamer-experimental
+LOG_FILE=/var/log/webcam_stream
+CAM_RES=1920x1080
+CAM_FPS=30
+NET_PORT=8080
+
+# Start / stop streamer "daemon"
+
+case "$1" in
+    start)
+        cd $MJPG_PATH
+        ./mjpg_streamer -i "./input_uvc.so -r $CAM_RES -f $CAM_FPS" -o "./output_http.so -w ./www -p $NET_PORT" &
+        echo "$0: started"
+        ;;
+    stop)
+        pkill -x mjpg_streamer
+        echo "$0: stopped"
+        ;;
+    *)
+        echo "Usage: $0 {start|stop}" >&2
+        ;;
+esac
