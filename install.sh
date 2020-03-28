@@ -6,7 +6,7 @@ echo "Installing mjpg-streamer and required depencencies. Totally on you if you 
 cd ~
 sudo apt-get install -y git subversion libjpeg8-dev imagemagick libav-tools libv4l-dev cmake
 git clone https://github.com/jacksonliam/mjpg-streamer.git
-cd mjpg-streamer
+cd mjpg-streamer/mjpg-streamer-experimental
 export LD_LIBRARY_PATH=.
 make
 
